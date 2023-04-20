@@ -10,7 +10,7 @@ function App() {
 					<img width={40} height={40} src="/img/logo.png" alt="logo"/>
 					<div>
 						<h3 className="text-uppercase">TOP SNEAKERS</h3>
-						<p>Store for the best sneakers</p>
+						<p className='opacity-5'>Store for the best sneakers</p>
 					</div>
 				</div>
 				<ul className="d-flex">
@@ -24,18 +24,59 @@ function App() {
 				</ul>
 			</header>
 			<div className="content p-40">
-				<h1>All sneakers</h1>
-				<div className="card">
-					<img src="" alt="" />
-					<p></p>
-					<div>
-						<div>
-							<span>Price:</span>
-							<b>129.99</b>
+				<h1 className='mb-40'>All sneakers</h1>
+				<div className="d-flex justify-between flex-wrap">
+					<div className="card">
+						<img width={133} height={112} src="/img/goods/1.png" alt="1" />
+						<h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
+						<div className='d-flex justify-between align-center'>
+							<div className='d-flex flex-column'>
+								<span>Price:</span>
+								<b>129.99 $</b>
+							</div>
+							<button className='button'>
+								<BsPlus size='11px' color='#D3D3D3'/>
+							</button>
 						</div>
-						<button>
-							<BsPlus size='11px' color='#D3D3D3'/>
-						</button>
+					</div>
+					<div className="card">
+						<img width={133} height={112} src="/img/goods/2.png" alt="1" />
+						<h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
+						<div className='d-flex justify-between align-center'>
+							<div className='d-flex flex-column'>
+								<span>Price:</span>
+								<b>129.99 $</b>
+							</div>
+							<button className='button'>
+								<BsPlus size='11px' color='#D3D3D3'/>
+							</button>
+						</div>
+					</div>
+					<div className="card">
+						<img width={133} height={112} src="/img/goods/3.png" alt="1" />
+						<h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
+						<div className='d-flex justify-between align-center'>
+							<div className='d-flex flex-column'>
+								<span>Price:</span>
+								<b>129.99 $</b>
+							</div>
+							<button className='button'>
+								<BsPlus size='11px' color='#D3D3D3'/>
+							</button>
+						</div>
+					</div>
+					<div className="card">
+						<img width={133} height={112} src="/img/goods/4.png" alt="1" />
+						<h5>Мужские Кроссовки Nike Blazer Mid Suede</h5>
+						<div className='d-flex justify-between align-center'>
+							<div className='d-flex flex-column'>
+								<span>Price:</span>
+								<b>129.99 $</b>
+							</div>
+							<button className='button'>
+								<BsPlus size='11px' color='#D3D3D3'/>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
