@@ -1,16 +1,23 @@
+import { useState } from 'react';
 import {BiSearch} from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Cart } from './components/Card';
 import { Header } from './components/Header';
 import { Drawer } from './components/Drawer';
+import { useEffect } from 'react';
 
-const arr = [
-	{name: "Men's Sneakers Nike Blazer Mid Suede", price: 129.99, url: '/img/goods/1.png'},
-	{name: "Men's Nike Air Max 270 Sneakers", price: 249.99, url: '/img/goods/2.png'},
-	{name: "Men's Nike Blazer Mid Suede Sneakers", price: 99.99, url: '/img/goods/3.png'},
-	{name: "Puma X Aka Boku Future Rider Sneakers", price: 199.99, url: '/img/goods/4.png'}
+import { selectAllItems } from './features/items/items-slice';
 
-];
+import { loadItems } from './features/items/items-slice';
+
+// const arr = [
+// 	{name: "Men's Sneakers Nike Blazer Mid Suede", price: 129.99, url: '/img/goods/1.png'},
+// 	{name: "Men's Nike Air Max 270 Sneakers", price: 249.99, url: '/img/goods/2.png'},
+// 	{name: "Men's Nike Blazer Mid Suede Sneakers", price: 99.99, url: '/img/goods/3.png'},
+// 	{name: "Puma X Aka Boku Future Rider Sneakers", price: 199.99, url: '/img/goods/4.png'}
+
+// ];
 const onClickFavorite = () => {
 	console.log('F');
 }
@@ -19,11 +26,18 @@ const onClickPlus = () => {
 }
 
 function App() {
+	const dispatch = useDispatch();
+	const list = useSelector(selectAllItems);
 
+	useEffect(() => {
+			dispatch(loadItems());
+	}, [dispatch]);
+
+	const [cartOpened, setCartOpened] = useState(false);
 	return (
 		<div className="wrapper clear">
-			<Drawer/>
-			<Header/>
+			{cartOpened && <Drawer onClose={() => setCartOpened(false)}/>}
+			<Header onClickCart={() => setCartOpened(true)}/>
 			<div className="content p-40">
 				<div className='d-flex align-center justify-between mb-40'>
 					<h1 className=''>All sneakers</h1>
@@ -33,7 +47,7 @@ function App() {
 					</div>
 				</div>
 				<div className="d-flex justify-between flex-wrap">
-					{arr.map((obj, i) => (
+					{list.map((obj, i) => (
 						<Cart 
 						key={i} 
 						title={obj.name} 

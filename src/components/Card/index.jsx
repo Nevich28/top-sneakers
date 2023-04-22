@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import styles from './Card.module.scss';
 
-export const Cart = ({title, price, url, onClickPlus, onClickFavorite}) => {
+export const Cart = ({title, price, url, onClickFavorite}) => {
     const [isAdded, setIsAdded] = useState(false);
+    const onClickPlus = () => {
+        setIsAdded(!isAdded);
+    }
     return (
         <div className={styles.card}>
             <div className={styles.favorite} onClick={onClickFavorite}>
@@ -15,10 +18,7 @@ export const Cart = ({title, price, url, onClickPlus, onClickFavorite}) => {
                     <span>Price:</span>
                     <b>{price} $</b>
                 </div>
-                {/* <button onClick={onClickPlus} className='button'> */}
-                    <img onClick={onClickPlus} src="/img/btn-plus.svg" alt="Plus" className='cu-p'/>
-                    {/* <BsPlus size='11px' color='#D3D3D3'/> */}
-                {/* </button> */}
+                    <img onClick={onClickPlus} src={isAdded ? "/img/btn-cheked.svg" : "/img/btn-plus.svg"} alt="Plus" className='cu-p'/>
             </div>
         </div>
     )

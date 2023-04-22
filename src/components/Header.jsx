@@ -1,7 +1,7 @@
 import {SlBasket} from 'react-icons/sl';
 import {BiUserCircle} from 'react-icons/bi';
 
-export const Header = () => {
+export const Header = ({onClickCart}) => {
     return (
         <header className='d-flex justify-between align-center p-40'>
         <div className="d-flex align-center">
@@ -12,7 +12,7 @@ export const Header = () => {
             </div>
         </div>
         <ul className="d-flex">
-            <li className='mr-30'>
+            <li onClick={onClickCart} className='mr-30 cu-p'>
                 <SlBasket size='18px' color='#9B9B9B' className='logo'/>
                 <span className='ml-10'>1205 $</span>
             </li>
