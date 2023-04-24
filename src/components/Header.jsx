@@ -1,7 +1,11 @@
 import {SlBasket} from 'react-icons/sl';
 import {BiUserCircle} from 'react-icons/bi';
+import { useSelector } from 'react-redux';
+import { selectTotalCount } from '../features/Cart/cart-slice';
+
 
 export const Header = ({onClickCart}) => {
+    const totalCount = useSelector(selectTotalCount);
     return (
         <header className='d-flex justify-between align-center p-40'>
         <div className="d-flex align-center">
@@ -14,7 +18,8 @@ export const Header = ({onClickCart}) => {
         <ul className="d-flex">
             <li onClick={onClickCart} className='mr-30 cu-p'>
                 <SlBasket size='18px' color='#9B9B9B' className='logo'/>
-                <span className='ml-10'>1205 $</span>
+                {totalCount>0 && <span className='ml-10'>{totalCount} $</span>}
+                
             </li>
             <li>
                 <BiUserCircle size='20px' color='#9B9B9B'/>

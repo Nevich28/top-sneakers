@@ -13,20 +13,21 @@ import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
 import { itemReducer } from "./features/items/items-slice";
+import { cartReducer } from "./features/Cart/cart-slice";
+import { searchReducer } from "./features/search/search-slice";
 
 import * as api from './config';
 
 const rootReducer = combineReducers({
-    items: itemReducer,
-    // controls: controlsReducer,
-    // countries: countryReducer,
-    // details: detailsReducer,
+    items: itemReducer, 
+    cart: cartReducer,
+    search: searchReducer,
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['items']
+    // blacklist: ['items']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
