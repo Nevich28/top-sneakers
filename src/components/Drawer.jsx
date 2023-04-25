@@ -17,13 +17,13 @@ const Item = ({name, url, price, removeItem}) => {
     )
 }
 
-const EmptyCart = () => {
+const EmptyCart = ({onClose}) => {
     return (
         <div className='cartEmpty'>
             <img className='emptyBox' src="/img/empty-box.png" alt="" />
             <h3>Cart is empty</h3>
             <p>Cart is empty, add at least <br/> one item to make an order</p>
-            <button className='greenButton'><img src="/img/arrow-left.svg" alt="arrow" />Return to catalog</button>
+            <button onClick={onClose} className='greenButton'><img src="/img/arrow-left.svg" alt="arrow" />Return to catalog</button>
         </div>
     )
 }
@@ -64,7 +64,7 @@ export const Drawer = ({onClose}) => {
                 <h2 className='d-flex justify-between mb-30'>
                     Cart 
                     <img onClick={onClose} className='removeBtn cu-p' src="/img/btn-remove.svg" alt="remove" /></h2>
-                    {cartItems.length===0 && <EmptyCart/>}
+                    {cartItems.length===0 && <EmptyCart onClose={onClose}/>}
                 
                 <div className="items">   
                     {cartItems.map((item) => (

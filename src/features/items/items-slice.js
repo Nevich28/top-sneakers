@@ -9,11 +9,21 @@ export const loadItems = createAsyncThunk(
     }
 );
 
+// export const postFavorite = createAsyncThunk(
+//     '@@items/post-favorite',
+//     (body, {
+//         extra: {client, api}
+//     }) => {
+//         return {fromSer: client.post(api.ALL_FAVORITE, body), }
+//     }
+// );
+
 const initialState = {
     status: 'idle',
     error: '',
     list: [],
-    isAddItems: []
+    isAddItems: [],
+    isFavorite: [],
 };
 
 const itemSlice = createSlice({
@@ -25,6 +35,12 @@ const itemSlice = createSlice({
         },
         removeItems: (state, action) => {
             state.isAddItems = state.isAddItems.filter((item) => item !== action.payload)
+        },
+        addFavorite: (state, action) => {
+            state.isFavorite.push(action.payload);
+        },
+        removeFavorite: (state, action) => {
+            state.isFavorite = state.isFavorite.filter((item) => item !== action.payload)
         }
     },
     extraReducers: (builder) => {
@@ -41,22 +57,22 @@ const itemSlice = createSlice({
                 state.status = 'received';
                 state.list = action.payload.data;
             })
+            // .addCase(postFavorite.fulfilled, (state, action) => {
+            //     state.isFavorite.push(action.payload.data);
+            //     // state.isFavorite = action.payload.data;
+            // })
     }
 });
 
 export const itemReducer = itemSlice.reducer;
-export const {addItems, removeItems} = itemSlice.actions;
+export const {addItems, removeItems, addFavorite, removeFavorite} = itemSlice.actions;
 //selectors
-
 export const selectAllItems = (state) => state.items.list;
 export const selectAllAddItems = (state) => state.items.isAddItems;
+export const selectAllFavoriteItems = (state) => state.items.isFavorite;
+
 export const selectFilteredItems = (state, {search=''}) => {
     return state.items.list.filter(item => (
         item.name.toLowerCase().includes(search.toLowerCase())
     ))
 }
-// export const selectVisibleCountries = (state, {search = '', region = ''}) => {
-//     return state.countries.list.filter(country => (
-//         country.name.toLowerCase().includes(search.toLowerCase()) && country.region.includes(region)
-//     ))
-// }

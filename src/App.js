@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import {BiSearch} from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Cart } from './components/Card';
@@ -7,21 +6,22 @@ import { Header } from './components/Header';
 import { Drawer } from './components/Drawer';
 import { useEffect } from 'react';
 
-import { selectFilteredItems, selectAllAddItems, loadItems, removeItems, addItems } from './features/items/items-slice';
+import { selectFilteredItems, selectAllAddItems, selectAllFavoriteItems, loadItems, removeItems, addItems, addFavorite, removeFavorite } from './features/items/items-slice';
 
 import { addItemToCart, removeItemFromCart } from './features/Cart/cart-slice';
 import { Search } from './features/search/Search';
 import { selectSearch } from './features/search/search-slice';
 
-const onClickFavorite = () => {
-	console.log('F');
-}
+
 
 function App() {
 	const dispatch = useDispatch();
 	const search = useSelector(selectSearch);
 	const list = useSelector(state => selectFilteredItems(state,{search}));
 	const addList = useSelector(selectAllAddItems);
+	const favoriteList = useSelector(selectAllFavoriteItems);
+
+	console.log(favoriteList);
 
 	useEffect(() => {
 			dispatch(loadItems());
@@ -34,6 +34,17 @@ function App() {
 		} else {
 			dispatch(removeItems(obj.id));
 			dispatch(removeItemFromCart(obj));
+		}
+	}
+
+	const onClickFavorite = (obj) => {
+		if (favoriteList.indexOf(obj.id) === -1) {
+			// dispatch(addFavorite(obj));
+			dispatch(addFavorite(obj.id));
+			// dispatch(addItemToCart(obj));
+		} else {
+			dispatch(removeFavorite(obj.id));
+			// dispatch(removeItemFromCart(obj));
 		}
 	}
 
@@ -55,7 +66,8 @@ function App() {
 						price={obj.price} 
 						url={obj.url} 
 						isAddCart={addList.indexOf(obj.id) !== -1}
-						onClickFavorite={onClickFavorite}
+						isAddFavorite={favoriteList.indexOf(obj.id) !== -1}
+						onClickFavorite={() => onClickFavorite(obj)}
 						onClickPlus={() => onClickPlus(obj)}
 						/>
 					))}

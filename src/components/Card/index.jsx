@@ -1,10 +1,10 @@
 import styles from './Card.module.scss';
 
-export const Cart = ({title, price, url, isAddCart, onClickPlus, onClickFavorite}) => {
+export const Cart = ({title, price, url, isAddCart, isAddFavorite, onClickPlus, onClickFavorite}) => {
     return (
         <div className={styles.card}>
             <div className={styles.favorite} onClick={onClickFavorite}>
-                <img src="/img/heart-unliked.svg" alt="unliked" />
+                <img src={isAddFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="unliked" />
             </div>
             <img width={133} height={112} src={url} alt={title} />
             <h5>{title}</h5>

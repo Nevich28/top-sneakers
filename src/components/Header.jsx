@@ -1,5 +1,6 @@
 import {SlBasket} from 'react-icons/sl';
 import {BiUserCircle} from 'react-icons/bi';
+import {AiOutlineHeart} from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { selectTotalCount } from '../features/Cart/cart-slice';
 
@@ -20,6 +21,9 @@ export const Header = ({onClickCart}) => {
                 <SlBasket size='18px' color='#9B9B9B' className='logo'/>
                 {totalCount>0 && <span className='ml-10'>{totalCount} $</span>}
                 
+            </li>
+            <li>
+                <AiOutlineHeart className='mr-30 cu-p' size='20px' color='#9B9B9B'/>
             </li>
             <li>
                 <BiUserCircle size='20px' color='#9B9B9B'/>
