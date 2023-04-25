@@ -208,3 +208,16 @@ header {
         }
     }
 }
+
+.favoriteEmpty {
+    .emptyBox {
+        width: 70px;
+        height: 70px;
+    }
+    .greenButton {
+        width: 40%;
+        text-align: center;
+        padding: 18px 0;
+        color: white;
+    }
+}

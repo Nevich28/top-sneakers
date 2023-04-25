@@ -54,7 +54,7 @@ const itemSlice = createSlice({
                 state.error = action.payload || action.meta.error;
             })
             .addCase(loadItems.fulfilled, (state, action) => {
-                state.status = 'received';
+                state.status = 'idle';
                 state.list = action.payload.data;
             })
             // .addCase(postFavorite.fulfilled, (state, action) => {
@@ -70,9 +70,16 @@ export const {addItems, removeItems, addFavorite, removeFavorite} = itemSlice.ac
 export const selectAllItems = (state) => state.items.list;
 export const selectAllAddItems = (state) => state.items.isAddItems;
 export const selectAllFavoriteItems = (state) => state.items.isFavorite;
+export const selectStatus = (state) => state.items.status;
 
 export const selectFilteredItems = (state, {search=''}) => {
     return state.items.list.filter(item => (
         item.name.toLowerCase().includes(search.toLowerCase())
+    ))
+}
+
+export const selectFavoriteItems = (state) => {
+    return state.items.list.filter(item => (
+        state.items.isFavorite.indexOf(item.id) !== -1
     ))
 }
