@@ -41,7 +41,8 @@ const itemSlice = createSlice({
         },
         removeFavorite: (state, action) => {
             state.isFavorite = state.isFavorite.filter((item) => item !== action.payload)
-        }
+        },
+        clearAdd: (state) => {state.isAddItems=[]},
     },
     extraReducers: (builder) => {
         builder
@@ -65,7 +66,7 @@ const itemSlice = createSlice({
 });
 
 export const itemReducer = itemSlice.reducer;
-export const {addItems, removeItems, addFavorite, removeFavorite} = itemSlice.actions;
+export const {addItems, removeItems, addFavorite, removeFavorite, clearAdd} = itemSlice.actions;
 //selectors
 export const selectAllItems = (state) => state.items.list;
 export const selectAllAddItems = (state) => state.items.isAddItems;

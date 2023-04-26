@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAllAddItems, selectAllFavoriteItems, removeItems, addItems, addFavorite, removeFavorite, selectFavoriteItems, selectStatus } from '../features/items/items-slice';
+import { selectAllAddItems, selectAllFavoriteItems, removeItems, addItems, addFavorite, removeFavorite, selectFavoriteItems } from '../features/items/items-slice';
 import { addItemToCart, removeItemFromCart } from '../features/Cart/cart-slice';
 
 export const useAddItem = () => {

@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { selectAllCartItems, removeItemFromCart } from '../features/Cart/cart-slice';
-import { removeItems } from '../features/items/items-slice';
-import { selectTotalCount } from '../features/Cart/cart-slice';
+import { removeItems, clearAdd } from '../features/items/items-slice';
+import { selectTotalCount, postOrder, selectLastOrderNumber, selectStatusLoading } from '../features/Cart/cart-slice';
+import { CartInfo } from './CartInfo';
 
 
 const Item = ({name, url, price, removeItem}) => {
@@ -17,18 +19,7 @@ const Item = ({name, url, price, removeItem}) => {
     )
 }
 
-const EmptyCart = ({onClose}) => {
-    return (
-        <div className='cartEmpty'>
-            <img className='emptyBox' src="/img/empty-box.png" alt="" />
-            <h3>Cart is empty</h3>
-            <p>Cart is empty, add at least <br/> one item to make an order</p>
-            <button onClick={onClose} className='greenButton'><img src="/img/arrow-left.svg" alt="arrow" />Return to catalog</button>
-        </div>
-    )
-}
-
-const CartFooter = ({totalCount}) => {
+const CartFooter = ({totalCount, onClickOrder, isLoading}) => {
     return (
         <div className='cartTotalBlock'>
             <ul>
@@ -43,7 +34,7 @@ const CartFooter = ({totalCount}) => {
                     <b>{Math.round(totalCount*0.05)} $</b>
                 </li>
             </ul>
-            <button className='greenButton'>Place an order <img src="/img/arrow.svg" alt="arrow" /></button>
+            <button disabled={isLoading} onClick={onClickOrder} className='greenButton'>Place an order <img src="/img/arrow.svg" alt="arrow" /></button>
         </div>	
     )
 }
@@ -52,11 +43,24 @@ export const Drawer = ({onClose}) => {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectAllCartItems);
     const totalCount = useSelector(selectTotalCount);
+    const [isOrderCompleted, setIsOrderCompleted] = useState(false);
+    const orderNumber = useSelector(selectLastOrderNumber);
+    const isLoading = useSelector(selectStatusLoading);
+
+    const onClickOrder = () => {
+        setIsOrderCompleted(true);
+        dispatch(clearAdd());
+        dispatch(postOrder(cartItems));
+
+    }
 
     const removeItem = (item) => {
         dispatch(removeItemFromCart(item));
         dispatch(removeItems(item.id));
+        dispatch(removeItems(item.id));
     }
+
+
     return (
         // <div style={{ display: 'none' }} className="overlay">
         <div className="overlay">
@@ -64,20 +68,25 @@ export const Drawer = ({onClose}) => {
                 <h2 className='d-flex justify-between mb-30'>
                     Cart 
                     <img onClick={onClose} className='removeBtn cu-p' src="/img/btn-remove.svg" alt="remove" /></h2>
-                    {cartItems.length===0 && <EmptyCart onClose={onClose}/>}
-                
+                    {/* {cartItems.length===0 && <EmptyCart onClose={onClose}/>} */}
+                    {cartItems.length===0 && <CartInfo 
+                                                title={isOrderCompleted ? 'Order placed' : 'Cart is empty'}
+                                                description={isOrderCompleted ? `Your order #${orderNumber} will soon be transferred to courier delivery` : 'Cart is empty, add at least one item to make an order'} 
+                                                image={isOrderCompleted ? '/img/complet-order.png' : '/img/empty-box.png'}
+                                                onClose={onClose}/>}
                 <div className="items">   
                     {cartItems.map((item) => (
                         <Item
                             key={item.id}
-                            name={item.name}
-                            url={item.url}
-                            price={item.price}
+                            {...item}
                             removeItem={() => removeItem(item)}
                         />
                     ))}
                 </div>
-                {cartItems.length!==0 && <CartFooter totalCount={totalCount}/>}
+                {cartItems.length!==0 && <CartFooter
+                                            totalCount={totalCount}
+                                            onClickOrder={onClickOrder} 
+                                            isLoading={isLoading === 'loading'}/>}
             </div>
         </div>
     )

@@ -2,17 +2,7 @@ import { Link } from "react-router-dom";
 import { useAddItem } from "../hooks/use-add-item";
 
 import { Cart } from "../components/Card";
-
-const EmptyFavorite = () => {
-    return (
-        <div className='cartEmpty favoriteEmpty'>
-            <img className='emptyBox' src="/img/sad-smile.png" alt="" />
-            <h3>No bookmarks</h3>
-            <p>You haven't added anything to your bookmarks</p>
-            <Link to='/' className='greenButton mt-20'><img src="/img/arrow-left.svg" alt="arrow" />Return to catalog</Link>
-        </div>
-    )
-}
+import { FavoriteOrderInfo } from "../components/FavoriteOrderInfo";
 
 const FavoriteItem = ({favoriteItems, addList, favoriteList, onClickFavorite, onClickPlus}) => {
     return (
@@ -33,8 +23,6 @@ const FavoriteItem = ({favoriteItems, addList, favoriteList, onClickFavorite, on
 
 export const Favorite = () => {
     const [onClickPlus, onClickFavorite, addList, favoriteList, favoriteItems] = useAddItem();
-    const [statusLoading] = useAddItem();
-    console.log(statusLoading);
     return (
         <div className="content p-40">
             <Link to='/'>
@@ -46,7 +34,11 @@ export const Favorite = () => {
                 favoriteList={favoriteList}
                 onClickFavorite={onClickFavorite}
                 onClickPlus={onClickPlus}
-                /> : <EmptyFavorite/>}
+                /> : <FavoriteOrderInfo
+                        title='No bookmarks'
+                        description="You haven't added anything to your bookmarks"
+                        img="/img/arrow-left.svg"
+                        />}
         </div>
     )
 } 
