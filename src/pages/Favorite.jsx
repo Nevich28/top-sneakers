@@ -15,6 +15,7 @@ const FavoriteItem = ({favoriteItems, addList, favoriteList, onClickFavorite, on
                     isAddFavorite={favoriteList.indexOf(obj.id) !== -1}
                     onClickFavorite={() => onClickFavorite(obj)}
                     onClickPlus={() => onClickPlus(obj)}
+                    marginForSearch={true}
                     />
                 ))}
             </div>

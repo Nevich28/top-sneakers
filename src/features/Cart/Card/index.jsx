@@ -7,7 +7,7 @@ const CartIner = ({name, price, url, isAddCart=false, isAddFavorite=false, onCli
             {btnShow && <img src={isAddFavorite ? "/img/heart-liked.svg" : "/img/heart-unlike.png"} alt="unliked" />}
         </div>
         <img width={133} height={112} src={url} alt={name} />
-        <h5>{name}</h5>
+        <div className={styles.title}>{name}</div>
         <div className='d-flex justify-between align-center'>
             <div className='d-flex flex-column'>
                 <span>Price:</span>

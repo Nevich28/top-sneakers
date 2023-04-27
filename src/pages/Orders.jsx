@@ -27,7 +27,7 @@ export const Orders = () => {
                                         description="Place at least one order"
                                         img="/img/sad-smile-order.png"/>}
             {status==='loading' && 
-            <div className="d-flex flex-wrap">
+            <div className="d-flex flex-wrap justify-between">
                 {loadingArr.map((_, i) => <Skeleton key={i}/>)}
             </div>
             }

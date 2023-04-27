@@ -17,6 +17,7 @@ export const OrdersItems = ({allOrders}) => {
                             key={obj.id} 
                             {...obj}
                             btnShow={false}
+                            marginForSearch={true}
                             />
                         ))
                     }
