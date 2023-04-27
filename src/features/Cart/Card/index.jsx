@@ -1,10 +1,10 @@
 import styles from './Card.module.scss';
 
-const CartIner = ({name, price, url, isAddCart, isAddFavorite, onClickPlus, onClickFavorite}) => {
+const CartIner = ({name, price, url, isAddCart=false, isAddFavorite=false, onClickPlus, onClickFavorite, btnShow=true}) => {
     return (
         <>
         <div className={styles.favorite} onClick={onClickFavorite}>
-            <img src={isAddFavorite ? "/img/heart-liked.svg" : "/img/heart-unliked.svg"} alt="unliked" />
+            {btnShow && <img src={isAddFavorite ? "/img/heart-liked.svg" : "/img/heart-unlike.png"} alt="unliked" />}
         </div>
         <img width={133} height={112} src={url} alt={name} />
         <h5>{name}</h5>
@@ -13,7 +13,7 @@ const CartIner = ({name, price, url, isAddCart, isAddFavorite, onClickPlus, onCl
                 <span>Price:</span>
                 <b>{price} $</b>
             </div>
-                <img onClick={onClickPlus} src={isAddCart ? "/img/btn-cheked.svg" : "/img/btn-plus.svg"} alt="Plus" className='cu-p'/>
+                { btnShow && <img onClick={onClickPlus} src={isAddCart ? "/img/btn-cheked.svg" : "/img/btn-plus.svg"} alt="Plus" className='cu-p'/>}
         </div>
         </>
     )

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAddItem } from "../hooks/use-add-item";
 
-import { Cart } from "../components/Card";
+import { Cart } from "../features/Cart/Card";
 import { FavoriteOrderInfo } from "../components/FavoriteOrderInfo";
 
 const FavoriteItem = ({favoriteItems, addList, favoriteList, onClickFavorite, onClickPlus}) => {
@@ -37,7 +37,7 @@ export const Favorite = () => {
                 /> : <FavoriteOrderInfo
                         title='No bookmarks'
                         description="You haven't added anything to your bookmarks"
-                        img="/img/arrow-left.svg"
+                        img="/img/sad-smile.png"
                         />}
         </div>
     )

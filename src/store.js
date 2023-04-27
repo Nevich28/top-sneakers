@@ -15,6 +15,7 @@ import { combineReducers } from "redux";
 import { itemReducer } from "./features/items/items-slice";
 import { cartReducer } from "./features/Cart/cart-slice";
 import { searchReducer } from "./features/search/search-slice";
+import { ordersReducer } from "./features/orders/order-slice";
 
 import * as api from './config';
 
@@ -22,12 +23,13 @@ const rootReducer = combineReducers({
     items: itemReducer, 
     cart: cartReducer,
     search: searchReducer,
+    orders: ordersReducer,
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    // blacklist: ['items']
+    blacklist: ['orders']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

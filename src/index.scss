@@ -55,36 +55,9 @@ header {
     }
 }
 
-.overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
 
-}
 
-.drawer {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 420px;
-    height: 100%;
-    right: 0;
-    background: #FFFFFF;
-    box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    h2 {
-        margin: 0;
-    }
-    .items {
-        overflow: auto;
-        margin-bottom: 40px;
-        flex: 1;
-    }
-}
+
 
 .cartTotalBlock {
     ul {

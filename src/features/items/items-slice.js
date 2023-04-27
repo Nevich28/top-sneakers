@@ -9,15 +9,6 @@ export const loadItems = createAsyncThunk(
     }
 );
 
-// export const postFavorite = createAsyncThunk(
-//     '@@items/post-favorite',
-//     (body, {
-//         extra: {client, api}
-//     }) => {
-//         return {fromSer: client.post(api.ALL_FAVORITE, body), }
-//     }
-// );
-
 const initialState = {
     status: 'idle',
     error: '',
@@ -58,10 +49,6 @@ const itemSlice = createSlice({
                 state.status = 'idle';
                 state.list = action.payload.data;
             })
-            // .addCase(postFavorite.fulfilled, (state, action) => {
-            //     state.isFavorite.push(action.payload.data);
-            //     // state.isFavorite = action.payload.data;
-            // })
     }
 });
 

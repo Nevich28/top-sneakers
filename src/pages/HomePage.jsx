@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import { Search } from '../features/search/Search';
-import { Cart } from '../components/Card';
+import { Cart } from '../features/Cart/Card';
 
 import { selectFilteredItems, loadItems, selectStatus} from '../features/items/items-slice';
 import { selectSearch } from '../features/search/search-slice';
 import { useAddItem } from '../hooks/use-add-item';
-import { Skeleton } from '../components/Card/Skeleton';
+import { Skeleton } from '../features/Cart/Card/Skeleton';
 
 export const HomePage = () => {
     const dispatch = useDispatch();
