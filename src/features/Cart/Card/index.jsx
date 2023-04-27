@@ -22,15 +22,8 @@ const CartIner = ({name, price, url, isAddCart=false, isAddFavorite=false, onCli
 export const Cart = (props) => {
     return (
         
-        <div className={styles.card}>
+        <div className={ `${styles.card} ${props.marginForSearch && "mr-30"}`}>
             <CartIner
-                // name={name}
-                // price={price}
-                // url={url}
-                // isAddCart={isAddCart}
-                // isAddFavorite={isAddFavorite}
-                // onClickPlus={onClickPlus}
-                // onClickFavorite={onClickFavorite}
                 {...props}
                 />            
         </div> 

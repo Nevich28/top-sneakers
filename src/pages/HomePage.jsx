@@ -27,13 +27,15 @@ export const HomePage = () => {
                 <h1 className=''>{search ? `Search on request: "${search}"` : 'All sneakers'}</h1>
                 <Search/>
             </div>
-            <div className="d-flex flex-wrap">
+            {/* <div className="d-flex flex-wrap justify-between"> */}
+            <div className={`d-flex flex-wrap ${!search && "justify-between"}`}>
 				{statusLoading === 'loading' && loadingArr.map((_, i) => <Skeleton key={i}/>)}
 				{statusLoading === 'idle' && 
 					list.map((obj) => (
 						<Cart 
 						key={obj.id} 
 						{...obj}
+						marginForSearch={search}
 						isAddCart={addList.indexOf(obj.id) !== -1}
 						isAddFavorite={favoriteList.indexOf(obj.id) !== -1}
 						onClickFavorite={() => onClickFavorite(obj)}
