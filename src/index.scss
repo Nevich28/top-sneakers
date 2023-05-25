@@ -1,8 +1,7 @@
-
 body {
     margin: 0;
     font-family: 'Inter', system-ui;
-    background: #E7F6FF;
+    background: #e7f6ff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -10,7 +9,7 @@ body {
     font-family: 'Inter', system-ui;
 }
 .wrapper {
-    background: #FFFFFF;
+    background: #ffffff;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
     border-radius: 20px;
     max-width: 1080px;
@@ -18,12 +17,13 @@ body {
 }
 
 header {
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid #eaeaea;
 
     img {
         margin-right: 15px;
     }
-    h3, p {
+    h3,
+    p {
         margin: 0;
     }
 }
@@ -34,8 +34,8 @@ header {
 }
 
 .button {
-    background: #FFFFFF;
-    border: 1px solid #F2F2F2;
+    background: #ffffff;
+    border: 1px solid #f2f2f2;
     border-radius: 8px;
     box-sizing: border-box;
     height: 32px;
@@ -44,9 +44,10 @@ header {
 }
 
 .search-block {
-    border: 1px solid #F3F3F3;
+    border: 1px solid #f3f3f3;
     border-radius: 10px;
     padding: 0 15px;
+
     input {
         border: 0;
         padding: 13px;
@@ -54,10 +55,6 @@ header {
         width: 200px;
     }
 }
-
-
-
-
 
 .cartTotalBlock {
     ul {
@@ -99,7 +96,7 @@ header {
 .greenButton {
     width: 100%;
     height: 55px;
-    background: #9DD558;
+    background: #9dd558;
     border-radius: 18px;
     border: none;
     color: white;
@@ -111,7 +108,7 @@ header {
         background: lighten(#9dd558, 5%);
     }
     &:active {
-        background: darken(#9dd558, 5%)
+        background: darken(#9dd558, 5%);
     }
 }
 
@@ -199,6 +196,15 @@ header {
     }
 }
 
+.cart_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    // align-items: center;
+    column-gap: 20px;
+    justify-items: center;
+}
+
 @keyframes button-loading {
     0% {
         opacity: 1;
@@ -208,5 +214,30 @@ header {
     }
     100% {
         opacity: 1;
+    }
+}
+.header_margin {
+    margin-bottom: 0;
+}
+
+@media (max-width: 1060px) {
+    .cart_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 800px) {
+    .cart_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 540px) {
+    .cart_grid {
+        grid-template-columns: 1fr;
+    }
+    .search-block {
+        margin-top: 10px;
+    }
+    .header_margin {
+        margin-bottom: 10px;
     }
 }
